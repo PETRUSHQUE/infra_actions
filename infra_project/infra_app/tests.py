@@ -4,6 +4,7 @@ from django.test import Client, TestCase
 
 
 class StaticPagesURLTests(TestCase):
+
     def setUp(self):
         self.guest_client = Client()
 
@@ -18,7 +19,9 @@ class StaticPagesURLTests(TestCase):
     def test_page_shows_correct_content(self):
         """Проверка контента страниц."""
         response = self.guest_client.get('/')
-        self.assertContains(response, 'У меня получилось!')
+        print(response.content)
+        self.assertContains(response.content, 'У меня получилось!')
 
         response = self.guest_client.get('/second_page/')
-        self.assertContains(response, 'А это вторая страница!')
+        print(response.content)
+        self.assertContains(response.content, 'А это вторая страница!')
